@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Outfit Final</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>‧₊˚♪ Tu outfit final 𝄞₊˚⊹‧</h1>
+
+<div style="text-align:center;">
+    <ul style="list-style: none;" th:each="p : ${carrito}">
+        <li>
+            <div>
+                <p th:text="${p.descripcion}"></p>
+
+                <!-- Imagen de prenda basada en nombre -->
+                <img class="decoracion"
+                     th:src="@{'/images/' + ${#strings.replace(p.nombre.toLowerCase(), ' ', '-')} + '.png'}"
+                     alt="Imagen de prenda"/>
+
+                <!-- Imagen de decoración si aplica -->
+                <!--  <img class="decoracion"
+                     th:if="${p.descripcion.contains('bolsa rosa')}"
+                     src="/images/bolsa-rosa.png"/>
+
+                <img class="decoracion"
+                     th:if="${p.descripcion.contains('bolsa negra')}"
+                     src="/images/bolsa-negra.png"/>
+
+                <img class="decoracion"
+                     th:if="${p.descripcion.contains('bolsa blanca')}"
+                     src="/images/bolsa-blanca.png"/> -->
+            </div>
+        </li>
+    </ul>
+
+    <a href="/" class="button-cute">Volver al inicio ᓚ₍ ^. .^₎</a>
+</div>
+</body>
+</html>

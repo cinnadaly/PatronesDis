@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cute Boutique</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h2>Escoge tu outfit!</h2>
+
+<div class="estilos" style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+  <!-- Estilo Cute -->
+  <div class="estilo-cute" style="text-align:center;">
+    <h3>✿ Cute ✿</h3>
+    <img src="/images/cute-preview.png" style="width:150px; border-radius:15px;" alt="cute preview"/>
+
+    <form th:action="@{/boutique/setEstilo}" method="post">
+      <input type="hidden" name="estilo" value="cute"/>
+      <button type="submit" class="button-icon">Seleccionar Cute</button>
+    </form>
+
+    <!-- Opciones de prenda -->
+    <form th:action="@{/outfit/agregar}" method="post">
+      <button class="button-bubble" name="tipo" value="top">Top: Sweater rosa</button>
+      <button class="button-bubble" name="tipo" value="bottom">Bottom: Falda plisada</button>
+    </form>
+  </div>
+
+  <!-- Estilo Dark -->
+  <div class="estilo-dark" style="text-align:center;">
+    <h3>★ Dark ★</h3>
+    <img src="/images/dark-preview.png" style="width:150px; border-radius:15px;" alt="dark preview"/>
+
+    <form th:action="@{/boutique/setEstilo}" method="post">
+      <input type="hidden" name="estilo" value="dark"/>
+      <button type="submit" class="button-icon">Seleccionar Dark</button>
+    </form>
+
+    <form th:action="@{/outfit/agregar}" method="post">
+      <button class="button-bubble" name="tipo" value="top">Top: Sweater rayado</button>
+      <button class="button-bubble" name="tipo" value="bottom">Bottom: Falda negra</button>
+    </form>
+  </div>
+  <!-- Estilo CASUAL -->
+  <div class="estilo-casual" style="text-align:center;">
+    <h3>⟢ Casual ⟢</h3>
+    <img src="/images/casual-preview.png" style="width:150px; border-radius:15px;" alt="casual preview"/>
+
+    <form th:action="@{/boutique/setEstilo}" method="post">
+      <input type="hidden" name="estilo" value="casual"/>
+      <button type="submit" class="button-icon">Seleccionar casual</button>
+    </form>
+
+    <form th:action="@{/outfit/agregar}" method="post">
+      <button class="button-bubble" name="tipo" value="top">Top: Sweater gris</button>
+      <button class="button-bubble" name="tipo" value="bottom">Bottom: Jeans</button>
+    </form>
+
+  </div>
+  <!-- Estilo Summer -->
+  <div class="estilo-summer" style="text-align:center;">
+    <h3>❀ Summer ❀</h3>
+    <img src="/images/summer-preview.png" style="width:150px; border-radius:15px;" alt="summer preview"/>
+
+    <form th:action="@{/boutique/setEstilo}" method="post">
+      <input type="hidden" name="estilo" value="summer"/>
+      <button type="submit" class="button-icon">Seleccionar Summer</button>
+    </form>
+
+    <form th:action="@{/outfit/agregar}" method="post">
+      <button class="button-bubble" name="tipo" value="top">Top: Blusa gingham</button>
+      <button class="button-bubble" name="tipo" value="bottom">Bottom: Shorts gingham</button>
+    </form>
+  </div>
+</div>
+
+
+
+<h3>⋆.˚Elegir accesorio + decoración: ⭑.ᐟ</h3>
+<form th:action="@{/outfit/accesorio}" method="post" style="text-align:center;">
+  <button class="button-acc" name="bolsa" value="ninguna">
+    <img src="/images/sin-bolsa.png" style="width:40px; vertical-align:middle;" alt="ninguna"> Sin decoración
+  </button>
+  <button class="button-acc" name="bolsa" value="rosa">
+    <img src="/images/bolsa-rosa.png" style="width:40px; vertical-align:middle;" alt="rosa"> Bolsa rosa
+  </button>
+  <button class="button-acc" name="bolsa" value="negra">
+    <img src="/images/bolsa-negra.png" style="width:40px; vertical-align:middle;" alt="negra"> Bolsa negra
+  </button>
+  <button class="button-acc" name="bolsa" value="blanca">
+    <img src="/images/bolsa-blanca.png" style="width:40px; vertical-align:middle;" alt="blanca"> Bolsa blanca
+  </button>
+</form>
+
+
+<form th:action="@{/carrito/deshacer}" method="post" style="text-align:center;">
+  <button class="button-undo">⤿ Deshacer último</button>
+</form>
+
+  <form th:action="@{/carrito/limpiar}" method="post" style="text-align:center;">
+    <button class="button-clear">Limpiar outfit</button>
+</form>
+
+<h3 style="text-align:center;">₊ ⊹Tu outfit actual: ⊹ ₊</h3>
+<div style="text-align:center;">
+  <ul style="list-style: none; padding: 0" th:each="p :${carrito}">
+    <li style="margin: 5px 0;">
+      <span th:text="${p.nombre}"></span>
+    </li>
+  </ul>
+</div>
+
+  <form th:action="@{/outfit/final}" method="get" style="text-align:center;">
+    <button class="button-final">Ver outfit final .☘˖</button>
+  </form>
+
+<div style="text-align:center;">
+  <a href="/" class="button-icon">Volver al inicio</a>
+</div>
+</body>
+</html>
